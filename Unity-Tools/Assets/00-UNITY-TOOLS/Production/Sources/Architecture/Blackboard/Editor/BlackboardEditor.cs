@@ -8,8 +8,6 @@ using UnityEditorInternal;
 public class DATA_BlackBoardEditor : Editor
 {
     #region PROPERTIES
-    private static readonly string SaveFolder = "Assets/XX-TOOLS/Data/BlackboardsKeys/";
-
     private DATA_BlackBoard Target;
     private ReorderableList ExecuteList;
     #endregion
@@ -135,7 +133,7 @@ public class DATA_BlackBoardEditor : Editor
 
         InternalBlackboardParameter param = ScriptableObject.CreateInstance(assetType) as InternalBlackboardParameter;
 
-        string path = SaveFolder + GUID.Generate() + ".asset";
+        string path = PlayerPrefs.GetString("DataFolder", "Assets/XX-DATA/") + "BlackboardsKeys/" + GUID.Generate() + ".asset";
 
         {
             // Create the directory if needed.
