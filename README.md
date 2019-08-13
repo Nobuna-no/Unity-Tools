@@ -5,6 +5,8 @@ If there are things you can use, use it for free.
 #### ✦ Overview
 Most of the tools are independent but there is usually a common base (found in the Core/ file).
 
+![](https://i.gyazo.com/c0c902c4b3d57020f6719952cb0d6609.mp4)
+
 #### ✦ Features
 * Scriptable architecture (inspired by the Ryan Hipple Game Architecture with Scriptable Objects conference)
 * UE4 Blackboard like
