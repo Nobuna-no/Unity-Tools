@@ -8,7 +8,7 @@ Most of the tools are independent but there is usually a common base (found in t
 #### ✦ Features
 * Scriptable architecture (inspired by the Ryan Hipple Game Architecture with Scriptable Objects conference)
 * UE4 Blackboard like
-* Finite State Machine inspector framework
+* Finite State Machine inspector framework (FSMState, FSMStateTransition, FSMStateTransitionCondition, FSMStateModule)
 * Sensors (Raycast Utility,...)
 * Various Utils (Animation, Input management, MinMaxRange, Physcis...)
 * Some attributes (such as ReadOnly, Layer (like LayerMask)
