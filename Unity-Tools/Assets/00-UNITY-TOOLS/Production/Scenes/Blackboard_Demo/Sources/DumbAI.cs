@@ -6,10 +6,10 @@ using UnityEngine;
 public class DumbAI : MonoBehaviour
 {
     [SerializeField]
-    private DATA_BlackBoard _Blackboard;
+    private DATA_BlackBoard _Blackboard = null;
 
     [SerializeField]
-    private BBP_GameObject _BBPTarget;
+    private BBP_GameObject _BBPTarget = null;
     
 
     // Start is called before the first frame update
