@@ -98,7 +98,7 @@ public static class BlackboardParameterDrawerUtility
         description.stringValue = EditorGUI.TextField(buttonRect1, "Entry Description", description.stringValue);
         description.serializedObject.ApplyModifiedProperties();
 
-        bshared.boolValue = EditorGUI.Toggle(buttonRect2, new GUIContent("Instance Sync", "May this parameter be shared with all blackboard's owners."), bshared.boolValue);
+        bshared.boolValue = EditorGUI.Toggle(buttonRect2, new GUIContent("Instance Synced", "May this parameter be shared with all blackboard's owners."), bshared.boolValue);
         bshared.serializedObject.ApplyModifiedProperties();
 
         if (bshared.boolValue)

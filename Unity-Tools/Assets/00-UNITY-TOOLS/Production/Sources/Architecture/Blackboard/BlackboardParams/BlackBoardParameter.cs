@@ -18,8 +18,14 @@ public abstract class BlackboardParameter
 public class BlackboardParameter_Template<T, TVariable> : BlackboardParameter
     where TVariable : DataVariable<T>
 {
-    public TVariable Variable;
+    public TVariable _Variable;
+    public TVariable Variable { get => _Variable; }
 
+    /// <summary>
+    /// Initialize the blackboard value, getting the target's variable in the blackboard.
+    /// </summary>
+    /// <param name="board"></param>
+    /// <param name="Target">Target related using as key.</param>
     public override void Initialize(DATA_BlackBoard board, GameObject Target)
     {
         if(!UseEntryName 
@@ -27,14 +33,15 @@ public class BlackboardParameter_Template<T, TVariable> : BlackboardParameter
             || (EntryName.Variable == null && !EntryName.UsingConstant)
             || EntryName.Value.Length == 0)
         {
+            Debug.LogError(this + ": Failed to Initialize blackboard parameter from BlackBoard[\""+ board + "\"] and target[\""+ Target.name + "\"]");
             return;
         }
-        Variable = board.GetVariable<T, TVariable>(Target, EntryName);
+        _Variable = board.GetVariable<T, TVariable>(Target, EntryName);
     }
 
     public static implicit operator T(BlackboardParameter_Template<T, TVariable> _object)
     {
-        return _object.Variable;
+        return _object._Variable;
     }
 }
 
