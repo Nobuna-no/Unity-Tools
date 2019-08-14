@@ -7,6 +7,8 @@ using UnityEngine;
 public abstract class BlackboardParameter
 {
     public StringReference EntryName;
+    protected bool _IsValid;
+    public bool IsValid { get => _IsValid; }
 
     [SerializeField, HideInInspector]
     protected bool UseEntryName = true;
@@ -28,15 +30,22 @@ public class BlackboardParameter_Template<T, TVariable> : BlackboardParameter
     /// <param name="Target">Target related using as key.</param>
     public override void Initialize(DATA_BlackBoard board, GameObject Target)
     {
+        _IsValid = false;
         if(!UseEntryName 
             || EntryName == null 
             || (EntryName.Variable == null && !EntryName.UsingConstant)
             || EntryName.Value.Length == 0)
         {
-            Debug.LogError(this + ": Failed to Initialize blackboard parameter from BlackBoard[\""+ board + "\"] and target[\""+ Target.name + "\"]");
+            Debug.LogWarning(this + ": Failed to Initialize blackboard parameter from BlackBoard[\""+ board + "\"] and target[\""+ Target.name + "\"].");
+            _Variable = ScriptableObject.CreateInstance<TVariable>();
             return;
         }
         _Variable = board.GetVariable<T, TVariable>(Target, EntryName);
+
+        if (_Variable != null)
+        {
+            _IsValid = true;
+        }
     }
 
     public static implicit operator T(BlackboardParameter_Template<T, TVariable> _object)
