@@ -25,3 +25,7 @@ Allows to design multiple states from the editor without using code (or very lit
 * **Advanced Editor Utility** (Animation, Input management, MinMaxRange, Physcis...)
 * **GUI attributes** to extend the editor (such as ReadOnly or LayerMask).
 
+### WIP
+
+* **Custom Navmesh**: I wanted to try to make a navmesh to improve my geometry understanding.
+![wip-navmesh](github/navmesh.gif)
