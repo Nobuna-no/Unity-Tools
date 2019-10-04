@@ -15,10 +15,9 @@ The tools are designed to speed up iteration time for a better workflow efficien
 * **Finite State Machine** inspector framework (FSMState, FSMStateTransition, FSMStateTransitionCondition, FSMStateModule):
 Allows to design multiple states from the editor without using code (or very little).                                     
 ![overview-demo](github/fsm-bb-sample.gif)       
-*Finite State Machine and blackboard sample*
-
+*Finite State Machine and blackboard sample*       
 ![fsm-conrad-demo](github/fsm-sample.gif)       
-*Demo of character locomotion + Animation made with the Finite State Machine*
+*Demo of a character locomotion + animations made with the Finite State Machine*
 
 * **Sensors** (Raycast Utility to use raycast from asset descriptors, ...)
 * **Procedural action system** (for 2D action games): Allowing to combine various tweakable actions (Hitbox for damage, Momentum for movement, StatModifier, Combo Sequence, ...)                                                               
