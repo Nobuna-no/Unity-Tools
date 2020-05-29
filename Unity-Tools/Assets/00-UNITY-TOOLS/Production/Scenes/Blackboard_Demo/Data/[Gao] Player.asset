@@ -7,10 +7,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8574a8d27bda2324b9a6128b57cb2c7d, type: 3}
-  m_Name: '[BB]DumbAI'
+  m_Script: {fileID: 11500000, guid: da1155b2d2c02c54291b3635a335895d, type: 3}
+  m_Name: '[Gao] Player'
   m_EditorClassIdentifier: 
-  BlackboardParameters:
-  - {fileID: 11400000, guid: 08ac5ae0fc801874d816db408e10c709, type: 2}
+  InitialValue: {fileID: 0}
+  RuntimeValue: {fileID: 0}

@@ -14,10 +14,17 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
 {
     #region CLASS
     [System.Serializable]
-    private class ParametersBoard
+    private struct ParametersBoard
     {
         [SerializeField]
         private Dictionary<string, InternalBlackboardParameter> ParametersMap;
+
+        public ParametersBoard(ParametersBoard board)
+        {
+            List<InternalBlackboardParameter> bbl = new List<InternalBlackboardParameter>(board.ParametersMap.Values);
+            ParametersMap = new Dictionary<string, InternalBlackboardParameter>(bbl.Count);
+            Build(bbl);
+        }
 
         public void Build(List<InternalBlackboardParameter> bbp)
         {
@@ -81,7 +88,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
     public List<InternalBlackboardParameter> BlackboardParameters = new List<InternalBlackboardParameter>();
 
     // The template blackboard.
-    private ParametersBoard ParametersMap = null;
+    private ParametersBoard ParametersMap;
 
     // The map holding blackboard per object.
     private Dictionary<GameObject, ParametersBoard> m_EntitiesMap = null;
@@ -91,10 +98,10 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         {
             if(m_EntitiesMap == null)
             {
-                if (ParametersMap == null)
-                {
-                    ParametersMap = new ParametersBoard();
-                }
+                //if (ParametersMap == null)
+                //{
+                //    ParametersMap = new ParametersBoard();
+                //}
                 ParametersMap.Build(BlackboardParameters);
                 m_EntitiesMap = new Dictionary<GameObject, ParametersBoard>(3);
             }
@@ -107,10 +114,10 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
     #region CONSTRUCTOR
     public void Awake()
     {
-        if(ParametersMap == null)
-        {
-            ParametersMap = new ParametersBoard();
-        }
+        //if(ParametersMap == null)
+        //{
+        //    ParametersMap = new ParametersBoard();
+        //}
         ParametersMap.Build(BlackboardParameters);
     }
     #endregion
@@ -145,7 +152,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         }
         else
         {
-            m_EntitiesMap.Add(target.Target, ParametersMap);
+            m_EntitiesMap.Add(target.Target, new ParametersBoard(ParametersMap));
             target.Initialize(this);
             return GetVariable<T, TVariable>(target);
         }
@@ -163,7 +170,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         }
         else
         {
-            m_EntitiesMap.Add(target.Target, ParametersMap);
+            m_EntitiesMap.Add(target.Target, new ParametersBoard(ParametersMap));
             target.Initialize(this);
             SetValue<T>(target, var);
         }
@@ -178,7 +185,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         }
         else
         {
-            m_EntitiesMap.Add(target, ParametersMap);
+            m_EntitiesMap.Add(target, new ParametersBoard(ParametersMap));
             return SetReference<T, TVariable>(target, entryName, ref var);
         }
     }
@@ -196,7 +203,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         }
         else
         {
-            m_EntitiesMap.Add(target, ParametersMap);
+            m_EntitiesMap.Add(target, new ParametersBoard(ParametersMap));
             return GetVariable<T, TVariable>(target, entryName);
         }
     }
@@ -214,7 +221,7 @@ public class DATA_BlackBoard : ScriptableObject_AdvPostProcessing//, IClonable
         }
         else
         {
-            m_EntitiesMap.Add(target, ParametersMap);
+            m_EntitiesMap.Add(target, new ParametersBoard(ParametersMap));
             SetValue<T, TVariable>(target, entryName, var);
         }
     }
