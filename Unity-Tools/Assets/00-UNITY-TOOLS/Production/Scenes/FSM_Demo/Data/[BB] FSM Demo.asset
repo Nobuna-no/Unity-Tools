@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3757a2b97d19fee4fa7d500bcdcf8faa, type: 3}
-  m_Name: 167dfdfca08fc664fafdf3fa29d38358
+  m_Script: {fileID: 11500000, guid: 8574a8d27bda2324b9a6128b57cb2c7d, type: 3}
+  m_Name: '[BB] FSM Demo'
   m_EditorClassIdentifier: 
-  Name:
-    UseConstant: 1
-    ConstantValue: Player
-    Variable: {fileID: 0}
-  Description: Enter a description...
-  MustBeShared: 1
-  Value: {fileID: 0}
+  BlackboardParameters:
+  - {fileID: 11400000, guid: 39cb88d5e5d331441a7a4c1f4778dbe8, type: 2}

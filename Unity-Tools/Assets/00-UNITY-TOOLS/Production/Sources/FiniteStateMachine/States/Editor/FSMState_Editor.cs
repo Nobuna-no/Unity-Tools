@@ -30,7 +30,7 @@ public class FSMState_Editor<T> : Editor
 
         DrawModules();
     }
-    public static readonly string PRESET_PATH = "Assets/XX-TOOLS/Data/StateModulesPresets/";
+    public static readonly string PRESET_PATH = "Assets/XX-DATA/StateModulesPresets/";
     bool DrawModule(Editor editor, int index)
     {
         if(editor == null || editor.target == null)
@@ -50,10 +50,9 @@ public class FSMState_Editor<T> : Editor
                 FSMStateModule_Preset asset = Target.GenerateStateModulePreset(index);
                 if(asset != null)
                 {
-
-                    if (!UnityEngine.Windows.Directory.Exists(PRESET_PATH))
+                    if (!System.IO.Directory.Exists(PRESET_PATH))
                     {
-                        UnityEngine.Windows.Directory.CreateDirectory(PRESET_PATH);
+                        System.IO.Directory.CreateDirectory(PRESET_PATH);
                     }
                     AssetDatabase.CreateAsset(asset, PRESET_PATH + editor.target.ToString() + ".asset");
                     EditorGUIUtility.PingObject(asset.GetInstanceID());

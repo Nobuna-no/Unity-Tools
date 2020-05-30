@@ -38,8 +38,10 @@ public class FiniteStateMachine : FSMState
     private bool _UpdateSignal = false;
 #endif
 
+    [SerializeField, ReadOnly]
+    private float _RuntimeDeltaTime = 0f;
     private Coroutine _UpdateCrt;
-
+    private float _LastTime = 0f;
     #endregion
 
 
@@ -254,18 +256,23 @@ public class FiniteStateMachine : FSMState
     }
     #endregion
 
-    
+
     #region COROUTINE
     private IEnumerator Update_Coroutine()
     {
         while (true)
         {
+            _LastTime = Time.realtimeSinceStartup;
             yield return new WaitForSeconds(_UpdateTickInSecond);
+
+            _RuntimeDeltaTime = Time.realtimeSinceStartup - _LastTime;
+
 #if UNITY_EDITOR
             _UpdateSignal = !_UpdateSignal;
 #endif
-            base.UpdateState();
-            _CurrentState?.UpdateState();
+            
+            base.UpdateState(_RuntimeDeltaTime);
+            _CurrentState?.UpdateState(_RuntimeDeltaTime);
         }
     }
     #endregion

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3757a2b97d19fee4fa7d500bcdcf8faa, type: 3}
-  m_Name: 167dfdfca08fc664fafdf3fa29d38358
+  m_Script: {fileID: 11500000, guid: 1cecd851ad450e74e85fc636d0b5acef, type: 3}
+  m_Name: b98e00903753a404e8c63b14c9e11f12
   m_EditorClassIdentifier: 
   Name:
     UseConstant: 1
-    ConstantValue: Player
+    ConstantValue: Forward
     Variable: {fileID: 0}
   Description: Enter a description...
-  MustBeShared: 1
+  MustBeShared: 0
   Value: {fileID: 0}

@@ -69,12 +69,12 @@ public class FSMStateModule_Move2D : FSMStateModule
 
 
     #region PUBLIC METHODS
-    public override FSMStateModule_Preset GeneratePreset()
-    {
-        FSMStateModule_Move2D_Preset instance = ScriptableObject.CreateInstance<FSMStateModule_Move2D_Preset>();
-        Fill(instance);
-        return instance;
-    }
+    //public override FSMStateModule_Preset GeneratePreset()
+    //{
+    //    FSMStateModule_Move2D_Preset instance = ScriptableObject.CreateInstance<FSMStateModule_Move2D_Preset>();
+    //    Fill(instance);
+    //    return instance;
+    //}
 
     public void Fill(FSMStateModule_Move2D_Preset target)
     {
@@ -89,26 +89,28 @@ public class FSMStateModule_Move2D : FSMStateModule
         target.Data.LerpSpeed = _Data.LerpSpeed;
     }
 
-    [ContextMenu("Copy please!")]
-    public override void CopyPreset()
-    {
-        _Data.Loop = _Preset.Data.Loop;
-        _Data.MoveAxis = _Preset.Data.MoveAxis;
-        _Data.XVelocity = _Preset.Data.XVelocity;
-        _Data.YVelocity = _Preset.Data.YVelocity;
+    //[ContextMenu("Copy please!")]
+    //public override void CopyPreset()
+    //{
+    //    _Data.Loop = _Preset.Data.Loop;
+    //    _Data.MoveAxis = _Preset.Data.MoveAxis;
+    //    _Data.XVelocity = _Preset.Data.XVelocity;
+    //    _Data.YVelocity = _Preset.Data.YVelocity;
 
-        _Data.MaxSpeed = _Preset.Data.MaxSpeed;
-        _Data.UseMoveValueAs = _Preset.Data.UseMoveValueAs;
-        _Data.MoveValues = _Preset.Data.MoveValues;
-        _Data.LerpSpeed = _Preset.Data.LerpSpeed;
-    }
+    //    _Data.MaxSpeed = _Preset.Data.MaxSpeed;
+    //    _Data.UseMoveValueAs = _Preset.Data.UseMoveValueAs;
+    //    _Data.MoveValues = _Preset.Data.MoveValues;
+    //    _Data.LerpSpeed = _Preset.Data.LerpSpeed;
+    //}
 
     public override void Initialize(DATA_BlackBoard blackBoard, GameObject target)
     {
-        if (_Preset.Data != null)
-        {
-            CopyPreset();
-        }
+        base.Initialize(blackBoard, target);
+
+        //if (_Preset != null && _Preset.Data != null)
+        //{
+        //    CopyPreset();
+        //}
 
         _Forward.Initialize(blackBoard, target);
         if (!_Forward.IsValid)
@@ -137,19 +139,17 @@ public class FSMStateModule_Move2D : FSMStateModule
         }
     }
 
-    public override void Enter()
+    public override void OnStateBegin()
     {
         _Stamps = Vector2.zero;
 
         //return base.Enter();
     }
 
-    public override void UpdateState()
+    public override void OnStateUpdate(float deltaTime)
     {
-        base.UpdateState();
-
 #if UNITY_EDITOR
-        _DeltaTime = Time.deltaTime;
+        _DeltaTime = deltaTime;
 #endif
         Vector2 _CurrentVelocity = Vector2.zero;
 

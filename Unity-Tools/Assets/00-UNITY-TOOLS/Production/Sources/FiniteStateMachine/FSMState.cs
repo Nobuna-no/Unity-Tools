@@ -120,7 +120,7 @@ public class FSMState : MonoBehaviour_Utility
 
         for (int i = 0, c = StateModules.Count; i < c; ++i)
         {
-            StateModules[i].Enter();
+            StateModules[i].OnStateBegin();
         }
 
         return true;
@@ -129,13 +129,13 @@ public class FSMState : MonoBehaviour_Utility
     /// <summary>
     /// Calls each update tick of the FSM. The update tick can be setup from the FSM parameters (default = 0.01f).
     /// </summary>
-    public virtual void UpdateState()
+    public virtual void UpdateState(float deltaTime)
     {
         _Events.Update.Invoke();
 
         for (int i = 0, c = StateModules.Count; i < c; ++i)
         {
-            StateModules[i].UpdateState();
+            StateModules[i].OnStateUpdate(deltaTime);
         }
     }
 
@@ -153,7 +153,7 @@ public class FSMState : MonoBehaviour_Utility
 
         for(int i = 0, c = StateModules.Count; i < c; ++i)
         {
-            StateModules[i].Exit();
+            StateModules[i].OnStateExit();
         }
     }
 
@@ -208,7 +208,7 @@ public class FSMState : MonoBehaviour_Utility
             return null;
         }
 
-        return StateModules[index]?.GeneratePreset();
+        return null;// StateModules[index]?.GeneratePreset();
     }
 
     public void RemoveStateModule(int index)
@@ -237,7 +237,7 @@ public class FSMState : MonoBehaviour_Utility
             return;
         }
 
-        StateModules[index]?.CopyPreset();
+        //StateModules[index]?.CopyPreset();
     }
 
     public void AddStateModule(FSMStateModule module)

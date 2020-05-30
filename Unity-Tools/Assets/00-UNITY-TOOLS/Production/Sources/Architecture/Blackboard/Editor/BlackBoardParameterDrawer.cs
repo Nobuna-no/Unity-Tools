@@ -75,7 +75,7 @@ public class BlackboardParameterDrawer : PropertyDrawer
         // Step 1: Get properties
         SerializedProperty useEntryName = property.FindPropertyRelative("UseEntryName");
         SerializedProperty entryName = property.FindPropertyRelative("EntryName");
-        SerializedProperty variable = property.FindPropertyRelative("Variable");
+        SerializedProperty variable = property.FindPropertyRelative("_Variable");
 
 
         // Step 2: Calculate rect for configuration button
@@ -92,7 +92,8 @@ public class BlackboardParameterDrawer : PropertyDrawer
         int result = EditorGUI.Popup(buttonRect, t, useEntryName.boolValue ? 0 : 1, popupOptions, popupStyle);
         useEntryName.boolValue = result == 0;
 
-        EditorGUI.PropertyField(position, useEntryName.boolValue ? entryName : variable, GUIContent.none);
+        SerializedProperty prop = useEntryName.boolValue ? entryName : variable;
+        EditorGUI.PropertyField(position, prop, GUIContent.none);
 
         if (EditorGUI.EndChangeCheck())
         {

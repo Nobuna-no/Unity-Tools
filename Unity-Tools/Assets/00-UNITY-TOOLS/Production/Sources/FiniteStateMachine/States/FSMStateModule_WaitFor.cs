@@ -42,6 +42,8 @@ public class FSMStateModule_WaitFor : FSMStateModule
     #region PUBLIC METHODS
     public override void Initialize(DATA_BlackBoard blackBoard, GameObject target)
     {
+        base.Initialize(blackBoard, target);
+
         if (_Preset != null)
         {
             if (_Data == null)
@@ -62,34 +64,34 @@ public class FSMStateModule_WaitFor : FSMStateModule
         }
     }
 
-    public override void Enter()
+    public override void OnStateBegin()
     {
         _CancelCoroutine = false;
         Verbose(VerboseMask.Log, "Enter WaitFor Module() + _CancelCoroutine = " + _CancelCoroutine);
         StartCoroutine(WaitFor_Coroutine());
     }
 
-    public override void Exit()
+    public override void OnStateExit()
     {
         _CancelCoroutine = true;
         Verbose(VerboseMask.Log, "Exit WaitFor Module()  + _CancelCoroutine = " + _CancelCoroutine);
     }
 
-    public override FSMStateModule_Preset GeneratePreset()
-    {
-        FSMStateModule_WaitFor_Preset instance = ScriptableObject.CreateInstance<FSMStateModule_WaitFor_Preset>();
-        instance.Data = new Attributes();
-        instance.Data.DurationInSecond = _Data.DurationInSecond;
-        instance.Data.UseSecondsRealtime = _Data.UseSecondsRealtime;
-        return instance;
-    }
+    //public override FSMStateModule_Preset GeneratePreset()
+    //{
+    //    FSMStateModule_WaitFor_Preset instance = ScriptableObject.CreateInstance<FSMStateModule_WaitFor_Preset>();
+    //    instance.Data = new Attributes();
+    //    instance.Data.DurationInSecond = _Data.DurationInSecond;
+    //    instance.Data.UseSecondsRealtime = _Data.UseSecondsRealtime;
+    //    return instance;
+    //}
 
-    [ContextMenu("Copy please!")]
-    public override void CopyPreset()
-    {
-        _Data.DurationInSecond = _Preset.Data.DurationInSecond;
-        _Data.UseSecondsRealtime = _Preset.Data.UseSecondsRealtime;
-    }
+    //[ContextMenu("Copy please!")]
+    //public override void CopyPreset()
+    //{
+    //    _Data.DurationInSecond = _Preset.Data.DurationInSecond;
+    //    _Data.UseSecondsRealtime = _Preset.Data.UseSecondsRealtime;
+    //}
     #endregion
 
     #region Coroutine
